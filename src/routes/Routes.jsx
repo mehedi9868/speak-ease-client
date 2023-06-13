@@ -3,6 +3,7 @@ import Main from "../layout/Main";
 import Home from "../pages/Home/Home/Home";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
+import Dashboard from "../layout/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,15 @@ const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: "/",
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: "/",
+            }
+        ]
+    }
 ]);
 
 export default router;
