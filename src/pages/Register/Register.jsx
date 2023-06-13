@@ -1,10 +1,35 @@
 import { useForm } from "react-hook-form";
 import googleLogo from "../../assets/icons/google.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import { useContext } from "react";
+import Swal from "sweetalert2";
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
-    const onSubmit = data => console.log(data);
+    const { createUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const onSubmit = data => {
+        createUser(data.email, data.password)
+            .then(result => {
+                const createdUser = result.user;
+                console.log(createdUser);
+
+                if (createdUser) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Successful!!',
+                        text: 'Your account has been created successfully',
+                    })
+                }
+                // redirect to login 
+                navigate('/login')
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    };
 
     return (
         <>

@@ -1,10 +1,35 @@
 import { useForm } from "react-hook-form";
 import googleLogo from "../../assets/icons/google.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
+    const { login } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
+    const onSubmit = data => {
+        login(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user;
+                if (loggedUser) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Successful!!',
+                        text: 'Login Successful',
+                    })
+                    navigate(from, { replace: true });
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    };
     return (
         <>
             <h2 className="text-2xl text-center font-bold my-10">Please Login</h2>
