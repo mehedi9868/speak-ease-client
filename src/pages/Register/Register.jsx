@@ -6,8 +6,8 @@ import { useContext } from "react";
 import Swal from "sweetalert2";
 
 const Register = () => {
-    const { register, handleSubmit, formState: { errors }, watch } = useForm();
-    const { createUser } = useContext(AuthContext);
+    const { register, handleSubmit, reset, formState: { errors }, watch } = useForm();
+    const { createUser, updateUserData } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onSubmit = data => {
@@ -15,7 +15,10 @@ const Register = () => {
             .then(result => {
                 const createdUser = result.user;
                 console.log(createdUser);
-
+                updateUserData(data.name, data.photoURL)
+                    .then(() => {
+                        reset();
+                    })
                 if (createdUser) {
                     Swal.fire({
                         icon: 'success',

@@ -1,7 +1,22 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+    const { user, logout } = useContext(AuthContext);
 
+    const handleLogout = () => {
+        logout()
+            .then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Successful!!',
+                    text: 'Logout Successful',
+                })
+            })
+            .catch(error => console.log(error))
+    }
     const menu =
         <>
             <li>
@@ -32,24 +47,34 @@ const Navbar = () => {
                     {menu}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn">Login</a>
-            </div>
-            {/* profile */}
-            <div className="dropdown dropdown-end">
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 rounded-full">
-                        <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                    </div>
-                </label>
-                <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                    <li>
-                        <Link to="/">Dashboard</Link>
-                    </li>
-                    <li>
-                        <Link to="/">Logout</Link>
-                    </li>
-                </ul>
+            <div className="ml-auto flex items-center">
+                {
+                    user ?
+                        <>
+                            {/* profile */}
+                            <div className="dropdown dropdown-end">
+                                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img src={user?.photoURL} title={user?.displayName} />
+                                    </div>
+                                </label>
+                                <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                    <li>
+                                        <Link to="/dashboard">Dashboard</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/" className="" onClick={handleLogout}>Logout</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </>
+                        :
+                        <>
+                            <div className="navbar-end">
+                                <Link to="/login" className="btn">Login</Link>
+                            </div>
+                        </>
+                }
             </div>
         </div>
     );
