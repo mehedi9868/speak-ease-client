@@ -4,10 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useContext } from "react";
 import Swal from "sweetalert2";
+import { FadeLoader } from "react-spinners";
 
 const Register = () => {
     const { register, handleSubmit, reset, formState: { errors }, watch } = useForm();
-    const { createUser, updateUserData } = useContext(AuthContext);
+    const { createUser, updateUserData, googleLogin, loading } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onSubmit = data => {
@@ -34,8 +35,34 @@ const Register = () => {
             })
     };
 
+    //  social login: google 
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(result => {
+                const loggedUser = result.user;
+                if (loggedUser) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Successful!!',
+                        text: 'Login Successful',
+                    });
+                    navigate('/')
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     return (
         <>
+            {/* loading state loader */}
+            <div className='flex justify-center mt-5 mb-5'>
+                {
+                    loading && <FadeLoader color="#36d7b7" />
+                }
+            </div>
+            {/* loading state loader */}
             <h2 className="text-2xl text-center font-bold my-10">Please Register</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control w-1/3 mx-auto">
@@ -114,7 +141,7 @@ const Register = () => {
             {/* social login  */}
             <div className="w-1/3 mx-auto mb-10">
                 <div className="divider">OR</div>
-                <button className="btn btn-outline w-full mt-4 flex items-center gap-2">
+                <button onClick={handleGoogleLogin} className="btn btn-outline w-full mt-4 flex items-center gap-2">
                     <img src={googleLogo} alt="google login" className="w-5" />
                     <span>Log in with Google</span>
                 </button>

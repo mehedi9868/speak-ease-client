@@ -4,10 +4,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { FadeLoader } from "react-spinners";
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
-    const { login } = useContext(AuthContext);
+    const { login, googleLogin, loading } = useContext(AuthContext);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -30,8 +31,34 @@ const Login = () => {
                 console.log(error);
             })
     };
+
+    //  social login: google 
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(result => {
+                const loggedUser = result.user;
+                if (loggedUser) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Successful!!',
+                        text: 'Login Successful',
+                    });
+                    navigate(from, { replace: true });
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
     return (
         <>
+            {/* loading state loader */}
+            <div className='flex justify-center mt-5 mb-5'>
+                {
+                    loading && <FadeLoader color="#36d7b7" />
+                }
+            </div>
+            {/* loading state loader */}
             <h2 className="text-2xl text-center font-bold my-10">Please Login</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control w-1/3 mx-auto">
@@ -71,7 +98,7 @@ const Login = () => {
             {/* social login  */}
             <div className="w-1/3 mx-auto mb-10">
                 <div className="divider">OR</div>
-                <button className="btn btn-outline w-full mt-4 flex items-center gap-2">
+                <button onClick={handleGoogleLogin} className="btn btn-outline w-full mt-4 flex items-center gap-2">
                     <img src={googleLogo} alt="google login" className="w-5" />
                     <span>Log in with Google</span>
                 </button>
