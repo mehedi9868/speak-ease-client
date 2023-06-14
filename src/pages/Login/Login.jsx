@@ -1,13 +1,16 @@
 import { useForm } from "react-hook-form";
 import googleLogo from "../../assets/icons/google.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FadeLoader } from "react-spinners";
 import axios from "axios";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
+    const [showPassword, setShowPassword] = useState(false)
+
     const { register, handleSubmit } = useForm();
     const { login, googleLogin, loading } = useContext(AuthContext);
 
@@ -46,6 +49,7 @@ const Login = () => {
                     });
                     const savedUser = { name: loggedUser?.displayName, email: loggedUser?.email, role: 'student' }
                     axios.post(`http://localhost:5000/all-users`, savedUser)
+
                     // redirect to desired route
                     navigate(from, { replace: true });
                 }
@@ -80,16 +84,19 @@ const Login = () => {
                         />
                     </div>
                     {/* password field  */}
-                    <div>
+                    <div className="relative">
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
                         <input
-                            type="password"
+                            type={showPassword ? 'text' : 'password'}
                             placeholder="Password"
                             className='input input-bordered w-full'
                             {...register("password", { required: true })}
                         />
+                        <div onClick={() => setShowPassword(!showPassword)} className="absolute top-[50%] mt-2 right-5 cursor-pointer">
+                            {showPassword ? <FaEye className="w-5 h-5" /> : <FaEyeSlash className="w-5 h-5" />}
+                        </div>
                     </div>
 
                     {/* submit field  */}
