@@ -11,6 +11,7 @@ import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
 import MySelectedClasses from "../pages/Dashboard/MySelectedClasses/MySelectedClasses";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
     {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
                 element: <Payment></Payment>,
                 loader: ({ params }) => fetch(`http://localhost:5000/selected-classes/${params.id}`)
             },
+            {
+                path: 'payment-history',
+                element: <PaymentHistory></PaymentHistory>,
+            }
 
         ]
     }
