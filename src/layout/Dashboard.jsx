@@ -51,7 +51,7 @@ const Dashboard = () => {
                             {/* Sidebar content here */}
                             <li><Link to='/dashboard/my-selected-classes'><p className='font-bold text-base'>My Selected Classes</p></Link></li>
                             <li><Link to='/dashboard/my-enrolled-classes'><p className='font-bold text-base'>My Enrolled Classes</p></Link></li>
-                            <li><Link to='/dashboard/payment'><p className='font-bold text-base'>payment</p></Link></li>
+                            {/* <li><Link to='/dashboard/payment'><p className='font-bold text-base'>payment</p></Link></li> */}
                             <li><Link to='/dashboard/payment-history'><p className='font-bold text-base'>Payment History</p></Link></li>
                             <div className='w-full px-3 border my-10'></div>
                             <li><Link to='/'><p className='font-bold text-base'>Home</p></Link></li>

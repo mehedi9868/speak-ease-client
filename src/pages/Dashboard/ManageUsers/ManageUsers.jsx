@@ -47,8 +47,8 @@ const ManageUsers = () => {
                                 <th>{index + 1}</th>
                                 <td>{user?.name}</td>
                                 <td>{user?.email}</td>
-                                <td><button disabled={user.role === 'instructor' ? 'disabled' : ''} onClick={() => handleUpdate(user._id, 'instructor')} className='btn btn-neutral text-white'><FaUserAlt className='w-5 h-5' /></button></td>
-                                <td><button disabled={user.role === 'admin' ? 'disabled' : ''} onClick={() => handleUpdate(user._id, 'admin')} className='btn btn-neutral text-white'><RiAdminFill className='w-5 h-5' /></button></td>
+                                <td><button disabled={user.role === 'instructor'} onClick={() => handleUpdate(user._id, 'instructor')} className='btn btn-neutral text-white'><FaUserAlt className='w-5 h-5' /></button></td>
+                                <td><button disabled={user.role === 'admin'} onClick={() => handleUpdate(user._id, 'admin')} className='btn btn-neutral text-white'><RiAdminFill className='w-5 h-5' /></button></td>
 
                             </tr>)}
 
