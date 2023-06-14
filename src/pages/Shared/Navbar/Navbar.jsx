@@ -20,17 +20,17 @@ const Navbar = () => {
     const menu =
         <>
             <li>
-                <Link to="/">Home</Link>
+                <Link to="/" className="text-white font-semibold text-base">Home</Link>
             </li>
             <li>
-                <Link to="/">Instructors</Link>
+                <Link to="/" className="text-white font-semibold text-base">Instructors</Link>
             </li>
             <li>
-                <Link to="/">Classes</Link>
+                <Link to="/" className="text-white font-semibold text-base">Classes</Link>
             </li>
         </>
     return (
-        <div className="navbar bg-base-300">
+        <div className="navbar fixed z-50 bg-opacity-50 bg-black">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -40,7 +40,7 @@ const Navbar = () => {
                         {menu}
                     </ul>
                 </div>
-                <Link to="/" className="text-xl">Speak Ease</Link>
+                <h2 className='text-gray-400 text-3xl font-bold' style={{ fontFamily: 'Kalam, cursive' }}>Speak Ease</h2>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -71,7 +71,7 @@ const Navbar = () => {
                         :
                         <>
                             <div className="navbar-end">
-                                <Link to="/login" className="btn">Login</Link>
+                                <Link to="/login" className="btn btn-link text-white no-underline">Login</Link>
                             </div>
                         </>
                 }
