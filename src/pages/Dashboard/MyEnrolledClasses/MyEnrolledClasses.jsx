@@ -5,7 +5,7 @@ const MyEnrolledClasses = () => {
     const { data: enrolledClasses = [], refetch } = useQuery({
         queryKey: ['selected-classes'],
         queryFn: async () => {
-            const response = await axios.get(`http://localhost:5000/enrolled-classes`)
+            const response = await axios.get(`https://speak-ease-server.vercel.app/enrolled-classes`)
             return response.data
         }
     })

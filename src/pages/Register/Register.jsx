@@ -29,7 +29,7 @@ const Register = () => {
                     })
                 }
                 const savedUser = { name: data.name, email: data.email, role: 'student' }
-                axios.post(`http://localhost:5000/all-users`, savedUser)
+                axios.post(`https://speak-ease-server.vercel.app/all-users`, savedUser)
 
                 // redirect to login 
                 navigate('/')
@@ -51,7 +51,7 @@ const Register = () => {
                         text: 'Login Successful',
                     });
                     const savedUser = { name: loggedUser?.displayName, email: loggedUser?.email, role: 'student' }
-                    axios.post(`http://localhost:5000/all-users`, savedUser)
+                    axios.post(`https://speak-ease-server.vercel.app/all-users`, savedUser)
 
                     // redirect to login
                     navigate('/')

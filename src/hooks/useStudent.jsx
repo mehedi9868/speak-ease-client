@@ -9,7 +9,7 @@ export const useStudent = () => {
     const { data: isStudent, isLoading: isStudentLoading } = useQuery({
         queryKey: ['student', user?.email],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/user/student/${user.email}`)
+            const res = await axios.get(`https://speak-ease-server.vercel.app/user/student/${user.email}`)
             return res.data
         }
     })

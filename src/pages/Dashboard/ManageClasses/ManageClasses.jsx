@@ -9,14 +9,14 @@ const ManageClasses = () => {
     const { data: allClasses = [], refetch } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const response = await axios.get(`http://localhost:5000/all-classes`);
+            const response = await axios.get(`https://speak-ease-server.vercel.app/all-classes`);
             return response.data;
         },
     });
 
     // console.log(allClasses)
     const handleUpdate = (id, status) => {
-        fetch(`http://localhost:5000/all-classes/${id}?status=${status}`, {
+        fetch(`https://speak-ease-server.vercel.app/all-classes/${id}?status=${status}`, {
             method: 'PUT'
         })
             .then(res => res.json())
@@ -34,7 +34,7 @@ const ManageClasses = () => {
         event.preventDefault();
         const feedback = event.target.feedback.value;
         const id = selectedClassId; // Access the selected class ID
-        axios.put(`http://localhost:5000/all-classes/${id}?feedback=${feedback}`)
+        axios.put(`https://speak-ease-server.vercel.app/all-classes/${id}?feedback=${feedback}`)
             .then((res) => {
                 console.log(res.data);
             });

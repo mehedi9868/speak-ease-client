@@ -13,13 +13,13 @@ const AllClasses = () => {
     const { data: allClasses = [], refetch } = useQuery({
         queryKey: ['all-classes'],
         queryFn: async () => {
-            const response = await axios.get(`http://localhost:5000/all-classes`)
+            const response = await axios.get(`https://speak-ease-server.vercel.app/all-classes`)
             return response.data
         }
     })
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/current-user?email=${user?.email}`)
+        axios.get(`https://speak-ease-server.vercel.app/current-user?email=${user?.email}`)
             .then(res => {
                 setCurrentUser(res.data)
             })
@@ -35,7 +35,7 @@ const AllClasses = () => {
             return;
         }
         const selectedClass = { singleClass, studentEmail: user?.email, classId: singleClass._id }
-        axios.post(`http://localhost:5000/selected-classes`, selectedClass)
+        axios.post(`https://speak-ease-server.vercel.app/selected-classes`, selectedClass)
             .then(res => {
                 if (res.data.acknowledged) {
                     refetch()

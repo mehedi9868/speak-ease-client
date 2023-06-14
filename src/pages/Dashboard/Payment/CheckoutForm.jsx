@@ -16,7 +16,7 @@ const CheckoutForm = ({ price, selectedClass }) => {
 
     useEffect(() => {
         console.log('Fetching clientSecret...');
-        axios.post(`http://localhost:5000/create-payment-intent`, { price })
+        axios.post(`https://speak-ease-server.vercel.app/create-payment-intent`, { price })
             .then(res => {
                 // console.log(res.data.clientSecret);
                 setClientSecret(res.data.clientSecret);
@@ -76,7 +76,7 @@ const CheckoutForm = ({ price, selectedClass }) => {
                 classId: selectedClass.singleClass._id
 
             }
-            axios.post(`http://localhost:5000/payment`, payment)
+            axios.post(`https://speak-ease-server.vercel.app/payment`, payment)
                 .then(res => {
                     console.log(res.data)
                     if (res.data.insertResult.acknowledged) {

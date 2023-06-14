@@ -12,13 +12,13 @@ const MySelectedClasses = () => {
         queryKey: ['selected-classes'],
         enabled: !loading,
         queryFn: async () => {
-            const response = await axios.get(`http://localhost:5000/selected-classes?email=${user?.email}`)
+            const response = await axios.get(`https://speak-ease-server.vercel.app/selected-classes?email=${user?.email}`)
             return response.data
         }
     })
     // console.log(selectedClasses)
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:5000/selected-classes/${id}`)
+        axios.delete(`https://speak-ease-server.vercel.app/selected-classes/${id}`)
             .then(res => {
                 if (res.data.deletedCount > 0) {
                     refetch()

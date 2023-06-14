@@ -48,7 +48,7 @@ const Login = () => {
                         text: 'Login Successful',
                     });
                     const savedUser = { name: loggedUser?.displayName, email: loggedUser?.email, role: 'student' }
-                    axios.post(`http://localhost:5000/all-users`, savedUser)
+                    axios.post(`https://speak-ease-server.vercel.app/all-users`, savedUser)
 
                     // redirect to desired route
                     navigate(from, { replace: true });

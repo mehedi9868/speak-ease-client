@@ -8,13 +8,13 @@ const ManageUsers = () => {
     const { data: allUsers = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const response = await axios.get(`http://localhost:5000/all-users`);
+            const response = await axios.get(`https://speak-ease-server.vercel.app/all-users`);
             return response.data;
         },
     });
 
     const handleUpdate = (id, role) => {
-        axios.put(`http://localhost:5000/all-users/${id}?role=${role}`)
+        axios.put(`https://speak-ease-server.vercel.app/all-users/${id}?role=${role}`)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     refetch()

@@ -9,7 +9,7 @@ export const useAdmin = () => {
     const { data: isAdmin, isLoading: isAdminLoading } = useQuery({
         queryKey: ['Admin', user?.email],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/user/admin/${user.email}`)
+            const res = await axios.get(`https://speak-ease-server.vercel.app/user/admin/${user.email}`)
             return res.data
         }
     })

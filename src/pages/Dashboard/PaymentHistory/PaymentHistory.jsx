@@ -8,7 +8,7 @@ const PaymentHistory = () => {
     const { data: paymentHistory = [] } = useQuery({
         queryKey: ['selected-classes'],
         queryFn: async () => {
-            const response = await axios.get(`http://localhost:5000/payment-history?email=${user?.email}`)
+            const response = await axios.get(`https://speak-ease-server.vercel.app/payment-history?email=${user?.email}`)
             return response.data
         }
     })

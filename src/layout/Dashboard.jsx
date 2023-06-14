@@ -8,7 +8,7 @@ const Dashboard = () => {
     const [currentUser, setCurrentUser] = useState({})
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/current-user?email=${user?.email}`)
+        axios.get(`https://speak-ease-server.vercel.app/current-user?email=${user?.email}`)
             .then(res => {
                 setCurrentUser(res.data)
             })

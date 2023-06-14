@@ -64,7 +64,7 @@ const router = createBrowserRouter([
             {
                 path: 'payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/selected-classes/${params.id}`)
+                loader: ({ params }) => fetch(`https://speak-ease-server.vercel.app/selected-classes/${params.id}`)
             },
             {
                 path: 'payment-history',

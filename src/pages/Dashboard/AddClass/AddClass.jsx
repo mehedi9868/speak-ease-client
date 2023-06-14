@@ -22,7 +22,7 @@ const AddClass = () => {
 
         const classes = { className, image: image, instructorEmail: user?.email, instructorName: user?.displayName, seats, price, status: 'Pending', enrolledStudents: 0 }
 
-        await axios.post(`http://localhost:5000/all-classes`, classes)
+        await axios.post(`https://speak-ease-server.vercel.app/all-classes`, classes)
             .then(res => {
                 if (res.data.acknowledged) {
                     Swal.fire({
