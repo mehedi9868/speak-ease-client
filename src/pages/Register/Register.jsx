@@ -5,6 +5,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { useContext } from "react";
 import Swal from "sweetalert2";
 import { FadeLoader } from "react-spinners";
+import axios from "axios";
 
 const Register = () => {
     const { register, handleSubmit, reset, formState: { errors }, watch } = useForm();
@@ -27,8 +28,11 @@ const Register = () => {
                         text: 'Your account has been created successfully',
                     })
                 }
+                const savedUser = { name: data.name, email: data.email, role: 'student' }
+                axios.post(`http://localhost:5000/all-users`, savedUser)
+
                 // redirect to login 
-                navigate('/login')
+                navigate('/')
             })
             .catch(err => {
                 console.log(err);
@@ -46,6 +50,10 @@ const Register = () => {
                         title: 'Successful!!',
                         text: 'Login Successful',
                     });
+                    const savedUser = { name: loggedUser?.displayName, email: loggedUser?.email, role: 'student' }
+                    axios.post(`http://localhost:5000/all-users`, savedUser)
+
+                    // redirect to login
                     navigate('/')
                 }
             })

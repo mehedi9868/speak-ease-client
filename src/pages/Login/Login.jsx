@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FadeLoader } from "react-spinners";
+import axios from "axios";
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
@@ -43,6 +44,9 @@ const Login = () => {
                         title: 'Successful!!',
                         text: 'Login Successful',
                     });
+                    const savedUser = { name: loggedUser?.displayName, email: loggedUser?.email, role: 'student' }
+                    axios.post(`http://localhost:5000/all-users`, savedUser)
+                    // redirect to desired route
                     navigate(from, { replace: true });
                 }
             })
