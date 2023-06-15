@@ -14,6 +14,9 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import MyEnrolledClasses from "../pages/Dashboard/MyEnrolledClasses/MyEnrolledClasses";
 import Instructors from "../pages/Instructors/Instructors";
+import InstructorRoute from "./InstructorRoute";
+import AdminRoute from "./AdminRoute";
+import StudentRoute from "./StudentRoute";
 
 const router = createBrowserRouter([
     {
@@ -48,36 +51,36 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "add-classes",
-                element: <AddClass></AddClass>,
+                element: <InstructorRoute><AddClass></AddClass></InstructorRoute>,
             },
             {
                 path: 'manage-classes',
-                element: <ManageClasses></ManageClasses>,
+                element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>,
             },
             {
                 path: 'manage-users',
-                element: <ManageUsers></ManageUsers>,
+                element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>,
             },
             {
                 path: 'my-classes',
-                element: <MyClasses></MyClasses>,
+                element: <InstructorRoute><MyClasses></MyClasses></InstructorRoute>,
             },
             {
                 path: 'my-selected-classes',
-                element: <MySelectedClasses></MySelectedClasses>,
+                element: <StudentRoute><MySelectedClasses></MySelectedClasses></StudentRoute>,
             },
             {
                 path: 'payment/:id',
-                element: <Payment></Payment>,
+                element: <StudentRoute><Payment></Payment></StudentRoute>,
                 loader: ({ params }) => fetch(`https://speak-ease-server.vercel.app/selected-class/${params.id}`)
             },
             {
                 path: 'payment-history',
-                element: <PaymentHistory></PaymentHistory>,
+                element: <StudentRoute><PaymentHistory></PaymentHistory></StudentRoute>,
             },
             {
                 path: 'my-enrolled-classes',
-                element: <MyEnrolledClasses></MyEnrolledClasses>,
+                element: <StudentRoute><MyEnrolledClasses></MyEnrolledClasses></StudentRoute>,
             },
 
         ]
