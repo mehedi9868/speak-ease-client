@@ -50,7 +50,7 @@ const router = createBrowserRouter([
         element: <Dashboard></Dashboard>,
         children: [
             {
-                path: "add-classes",
+                path: "add-class",
                 element: <InstructorRoute><AddClass></AddClass></InstructorRoute>,
             },
             {

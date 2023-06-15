@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
-import { useInstructor } from '../hooks/useInstractor';
 import { FadeLoader } from "react-spinners";
+import { useInstructor } from '../hooks/useInstructor';
 
 const InstructorRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
