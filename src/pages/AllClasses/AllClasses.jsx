@@ -13,7 +13,7 @@ const AllClasses = () => {
     const { data: allClasses = [], refetch } = useQuery({
         queryKey: ['all-classes'],
         queryFn: async () => {
-            const response = await axios.get(`https://speak-ease-server.vercel.app/all-classes`)
+            const response = await axios.get(`https://speak-ease-server.vercel.app/approved-all-classes`)
             return response.data
         }
     })
@@ -35,7 +35,7 @@ const AllClasses = () => {
             return;
         }
         const selectedClass = { singleClass, studentEmail: user?.email, classId: singleClass._id }
-        axios.post(`https://speak-ease-server.vercel.app/selected-classes`, selectedClass)
+        axios.post(`https://speak-ease-server.vercel.app/selected-class`, selectedClass)
             .then(res => {
                 if (res.data.acknowledged) {
                     refetch()
