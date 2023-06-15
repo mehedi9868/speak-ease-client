@@ -18,10 +18,10 @@ const Register = () => {
             .then(result => {
                 const createdUser = result.user;
                 console.log(createdUser);
-                updateUserData(data.name, data.photoURL)
+                updateUserData(data.name, data.photoUrl)
                     .then(() => {
                         reset();
-                        !loading
+
                     })
                 if (createdUser) {
                     Swal.fire({
@@ -30,9 +30,9 @@ const Register = () => {
                         text: 'Your account has been created successfully',
                     })
                 }
-                const savedUser = { name: data.name, photo: data.photoURL, email: data.email, role: 'student' }
+                const savedUser = { name: data.name, photo: data.photoUrl, email: data.email, role: 'student' }
                 axios.post(`https://speak-ease-server.vercel.app/all-users`, savedUser)
-
+                console.log('what is data:', data);
                 // redirect to login 
                 navigate('/')
             })
