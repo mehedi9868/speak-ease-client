@@ -17,6 +17,7 @@ import Instructors from "../pages/Instructors/Instructors";
 import InstructorRoute from "./InstructorRoute";
 import AdminRoute from "./AdminRoute";
 import StudentRoute from "./StudentRoute";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
             },
 
         ]
+    },
+    {
+        path: '*',
+        element: <ErrorPage></ErrorPage>,
     }
 ]);
 
