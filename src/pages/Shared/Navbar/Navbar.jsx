@@ -80,7 +80,7 @@ const Navbar = () => {
                                     <div className="mt-2 text-center">
                                         <hr />
                                         <p className="font-medium mt-2">{user?.email}</p>
-                                        <p className="font-bold text-green-600">{currentUser?.role}</p>
+                                        <p className="font-bold">Role: (<span className="font-bold text-green-600">{currentUser?.role}</span>)</p>
                                     </div>
                                 </ul>
                             </div>

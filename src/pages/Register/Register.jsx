@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet";
 
 const Register = () => {
     const { register, handleSubmit, reset, formState: { errors }, watch } = useForm();
-    const { createUser, updateUserData, googleLogin, loading } = useContext(AuthContext);
+    const { createUser, updateUserData, googleLogin, loading, user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onSubmit = data => {
@@ -18,18 +18,22 @@ const Register = () => {
             .then(result => {
                 const createdUser = result.user;
                 console.log(createdUser);
-                updateUserData(data.name, data.photoUrl)
+                updateUserData(createdUser, data.name, data.photoUrl)
                     .then(() => {
                         reset();
+                        if (createdUser) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Successful!!',
+                                text: 'Your account has been created successfully',
+                            })
+                        }
 
                     })
-                if (createdUser) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Successful!!',
-                        text: 'Your account has been created successfully',
+                    .then((err) => {
+                        console.log(err);
                     })
-                }
+                console.log('user upded?:', user);
                 const savedUser = { name: data.name, photo: data.photoUrl, email: data.email, role: 'student' }
                 axios.post(`https://speak-ease-server.vercel.app/all-users`, savedUser)
                 console.log('what is data:', data);

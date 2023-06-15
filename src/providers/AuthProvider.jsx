@@ -34,31 +34,42 @@ const AuthProvider = ({ children }) => {
     }
 
     // update user name and photo 
-    const updateUserData = (name, photoUrl) => {
+    const updateUserData = (user, name, photo) => {
         return updateProfile(user, {
             displayName: name,
-            photoURL: photoUrl
-        });
+            photoURL: photo
+        })
+            .then(() => {
+                setUser((prevUser) => ({
+                    ...prevUser,
+                    displayName: name,
+                    photoURL: photo
+                }));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
     // observe auth state change
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false);
+            console.log('provider?:', currentUser);
 
         });
         return () => {
             unsubscribe();
         }
     }, [])
-
+    console.log('provider?user:', user);
     // current user from db:
     useEffect(() => {
         axios.get(`https://speak-ease-server.vercel.app/current-user?email=${user?.email}`)
             .then(res => {
                 setCurrentUser(res.data)
             })
-    }, [user?.email]);
+    }, [user]);
 
     // information 
     const authInfo = {
