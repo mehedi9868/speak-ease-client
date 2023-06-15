@@ -1,11 +1,13 @@
 import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 export const AuthContext = createContext(null)
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [currentUser, setCurrentUser] = useState({})
     const [loading, setLoading] = useState(true);
 
     // register with email password
@@ -50,6 +52,13 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
+    useEffect(() => {
+        axios.get(`https://speak-ease-server.vercel.app/current-user?email=${user?.email}`)
+            .then(res => {
+                setCurrentUser(res.data)
+            })
+    }, [user?.email]);
+
     // information 
     const authInfo = {
         createUser,
@@ -58,7 +67,8 @@ const AuthProvider = ({ children }) => {
         logout,
         user,
         loading,
-        updateUserData
+        updateUserData,
+        currentUser
     }
     return (
         <AuthContext.Provider value={authInfo}>

@@ -4,7 +4,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
-    const { user, logout } = useContext(AuthContext);
+    const { user, logout, currentUser } = useContext(AuthContext);
 
     const handleLogout = () => {
         logout()
@@ -60,8 +60,17 @@ const Navbar = () => {
                                 </label>
                                 <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                                     <li>
-                                        <Link to="/dashboard">Dashboard</Link>
+                                        {currentUser && currentUser?.role === 'admin' && (
+                                            <Link to="/dashboard/manage-classes">Dashboard</Link>
+                                        )}
+                                        {currentUser && currentUser?.role === 'instructor' && (
+                                            <Link to="/dashboard/add-class">Dashboard</Link>
+                                        )}
+                                        {currentUser && currentUser?.role === 'student' && (
+                                            <Link to="/dashboard/my-selected-classes">Dashboard</Link>
+                                        )}
                                     </li>
+
                                     <li>
                                         <Link to="/" className="" onClick={handleLogout}>Logout</Link>
                                     </li>
@@ -76,7 +85,7 @@ const Navbar = () => {
                         </>
                 }
             </div>
-        </div>
+        </div >
     );
 };
 
