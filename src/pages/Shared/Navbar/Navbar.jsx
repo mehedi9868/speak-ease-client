@@ -58,24 +58,30 @@ const Navbar = () => {
                                         <img src={user?.photoURL} title={user?.displayName} />
                                     </div>
                                 </label>
-                                <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-lg w-52">
                                     <li>
-
-                                        <Link to="/dashboard/my-selected-classes">Dashboard</Link>
-
-                                        {currentUser && currentUser?.role === 'admin' && (
-                                            <Link to="/dashboard/manage-classes">Dashboard</Link>
+                                        {currentUser && (
+                                            <>
+                                                {currentUser.role === 'admin' ? (
+                                                    <Link to="/dashboard/manage-classes">Admin Dashboard</Link>
+                                                ) : currentUser.role === 'instructor' ? (
+                                                    <Link to="/dashboard/add-class">Instructor Dashboard</Link>
+                                                ) : (
+                                                    <Link to="/dashboard/my-selected-classes">Dashboard</Link>
+                                                )}
+                                            </>
                                         )}
-                                        {currentUser && currentUser?.role === 'instructor' && (
-                                            <Link to="/dashboard/add-class">Dashboard</Link>
-                                        )}
-
-
                                     </li>
 
                                     <li>
                                         <Link to="/" className="" onClick={handleLogout}>Logout</Link>
                                     </li>
+
+                                    <div className="mt-2 text-center">
+                                        <hr />
+                                        <p className="font-medium mt-2">{user?.email}</p>
+                                        <p className="font-bold">{currentUser?.role}</p>
+                                    </div>
                                 </ul>
                             </div>
                         </>
