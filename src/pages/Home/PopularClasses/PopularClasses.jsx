@@ -30,20 +30,7 @@ const PopularClasses = () => {
             })
             return;
         }
-        if (currentUser.role === 'admin') {
-            Swal.fire({
-                icon: 'error',
-                text: 'As an admin you can not select any class',
-            })
-            return;
-        }
-        if (currentUser.role === 'instructor') {
-            Swal.fire({
-                icon: 'error',
-                text: 'As an instructor you can not select any class',
-            })
-            return;
-        }
+
         const selectedClass = { singleClass, studentEmail: user?.email, classId: singleClass._id }
         axios.post(`https://speak-ease-server.vercel.app/selected-class`, selectedClass)
             .then(res => {
@@ -71,7 +58,7 @@ const PopularClasses = () => {
                             <p className='font-semibold'>Available Seats: <span className='font-normal'>{classes.seats}</span></p>
                             <p className='font-semibold'>Enrolled Students: <span className='font-normal'>{classes?.enrolledStudents}</span></p>
                             <p className='font-semibold'>Price: <span className='font-normal'>${classes.price}</span></p>
-                            <button onClick={() => handleSelect(classes)} className="btn btn-primary">Select</button>
+                            <button disabled={classes.seats === 0 ? 'disabled' : currentUser.role === 'admin' || currentUser.role === 'instructor' ? 'disabled' : ''} onClick={() => handleSelect(classes)} className="btn btn-primary">Select</button>
                         </div>
                     </div>)}
             </div>

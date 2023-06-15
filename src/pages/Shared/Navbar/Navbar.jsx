@@ -60,11 +60,11 @@ const Navbar = () => {
                                 </label>
                                 <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-lg w-52">
                                     <li>
-                                        {currentUser && (
+                                        {user && (
                                             <>
-                                                {currentUser.role === 'admin' ? (
+                                                {currentUser?.role === 'admin' ? (
                                                     <Link to="/dashboard/manage-classes">Admin Dashboard</Link>
-                                                ) : currentUser.role === 'instructor' ? (
+                                                ) : currentUser?.role === 'instructor' ? (
                                                     <Link to="/dashboard/add-class">Instructor Dashboard</Link>
                                                 ) : (
                                                     <Link to="/dashboard/my-selected-classes">Dashboard</Link>
@@ -80,7 +80,7 @@ const Navbar = () => {
                                     <div className="mt-2 text-center">
                                         <hr />
                                         <p className="font-medium mt-2">{user?.email}</p>
-                                        <p className="font-bold">{currentUser?.role}</p>
+                                        <p className="font-bold text-green-600">{currentUser?.role}</p>
                                     </div>
                                 </ul>
                             </div>
