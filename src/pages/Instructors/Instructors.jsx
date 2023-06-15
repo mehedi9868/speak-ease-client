@@ -22,7 +22,7 @@ const Instructors = () => {
                     {
                         allInstructors.map(instructor =>
                             <div key={instructor._id} className="card w-80 glass shadow-2xl group">
-                                <figure><img className='group-hover:scale-110 w-72 h-72' src={instructor?.image} alt={instructor.name} /></figure>
+                                <figure><img className='group-hover:scale-110 w-72 h-72' src={instructor?.photo} alt={instructor.name} /></figure>
                                 <div className="card-body">
                                     <h2 className="card-title">{instructor.name}</h2>
                                     <p className='font-semibold'>Email: <span className='font-normal'>{instructor.email}</span></p>

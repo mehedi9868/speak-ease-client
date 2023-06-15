@@ -47,7 +47,7 @@ const Login = () => {
                         title: 'Successful!!',
                         text: 'Login Successful',
                     });
-                    const savedUser = { name: loggedUser?.displayName, email: loggedUser?.email, role: 'student' }
+                    const savedUser = { name: loggedUser?.displayName, photo: loggedUser?.photoURL, email: loggedUser?.email, role: 'student' }
                     axios.post(`https://speak-ease-server.vercel.app/all-users`, savedUser)
 
                     // redirect to desired route

@@ -52,6 +52,7 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
+    // current user from db:
     useEffect(() => {
         axios.get(`https://speak-ease-server.vercel.app/current-user?email=${user?.email}`)
             .then(res => {

@@ -20,6 +20,7 @@ const Register = () => {
                 updateUserData(data.name, data.photoURL)
                     .then(() => {
                         reset();
+                        !loading
                     })
                 if (createdUser) {
                     Swal.fire({
@@ -28,7 +29,7 @@ const Register = () => {
                         text: 'Your account has been created successfully',
                     })
                 }
-                const savedUser = { name: data.name, email: data.email, role: 'student' }
+                const savedUser = { name: data.name, photo: data.photoURL, email: data.email, role: 'student' }
                 axios.post(`https://speak-ease-server.vercel.app/all-users`, savedUser)
 
                 // redirect to login 
@@ -44,13 +45,14 @@ const Register = () => {
         googleLogin()
             .then(result => {
                 const loggedUser = result.user;
+                console.log(loggedUser);
                 if (loggedUser) {
                     Swal.fire({
                         icon: 'success',
                         title: 'Successful!!',
                         text: 'Login Successful',
                     });
-                    const savedUser = { name: loggedUser?.displayName, email: loggedUser?.email, role: 'student' }
+                    const savedUser = { name: loggedUser?.displayName, photo: loggedUser?.photoURL, email: loggedUser?.email, role: 'student' }
                     axios.post(`https://speak-ease-server.vercel.app/all-users`, savedUser)
 
                     // redirect to login
