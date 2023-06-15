@@ -1,11 +1,14 @@
 import axios from 'axios';
+import { useContext } from 'react';
 import { useQuery } from 'react-query';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const MyEnrolledClasses = () => {
+    const { user } = useContext(AuthContext);
     const { data: enrolledClasses = [], refetch } = useQuery({
         queryKey: ['selected-classes'],
         queryFn: async () => {
-            const response = await axios.get(`https://speak-ease-server.vercel.app/enrolled-classes`)
+            const response = await axios.get(`https://speak-ease-server.vercel.app/enrolled-classes/${user?.email}`)
             return response.data
         }
     })
@@ -28,10 +31,10 @@ const MyEnrolledClasses = () => {
                         {enrolledClasses.map((classes, index) =>
                             <tr key={classes._id} className='hover'>
                                 <th>{index + 1}</th>
-                                <td><img className='w-20' src={classes.singleClass.image} alt="" /></td>
-                                <td>{classes.className}</td>
-                                <td>{classes.instructorName}</td>
-                                <td>{classes.instructorEmail}</td>
+                                <td><img className='w-20' src={classes?.singleClass?.image} alt="" /></td>
+                                <td>{classes?.singleClass?.className}</td>
+                                <td>{classes?.singleClass?.instructorName}</td>
+                                <td>{classes?.singleClass?.instructorEmail}</td>
                             </tr>)}
                     </tbody>
                 </table>

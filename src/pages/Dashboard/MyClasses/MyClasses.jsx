@@ -10,7 +10,7 @@ const MyClasses = () => {
     const { data: allClasses = [] } = useQuery({
         queryKey: ['my-classes'],
         queryFn: async () => {
-            const response = await axios.get(`https://speak-ease-server.vercel.app/all-classes?email=${user?.email}`)
+            const response = await axios.get(`https://speak-ease-server.vercel.app/all-classes/${user?.email}`)
             return response.data
         }
     })

@@ -15,7 +15,6 @@ const CheckoutForm = ({ price, selectedClass }) => {
 
 
     useEffect(() => {
-        console.log('Fetching clientSecret...');
         axios.post(`https://speak-ease-server.vercel.app/create-payment-intent`, { price })
             .then(res => {
                 // console.log(res.data.clientSecret);
@@ -64,7 +63,6 @@ const CheckoutForm = ({ price, selectedClass }) => {
         if (confirmError) {
             setCardError(confirmError)
         }
-        console.log(paymentIntent)
         if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id)
             const payment = {
@@ -73,7 +71,7 @@ const CheckoutForm = ({ price, selectedClass }) => {
                 date: new Date(),
                 price,
                 seats: 1,
-                classId: selectedClass.singleClass._id
+                classId: selectedClass?.singleClass?._id
 
             }
             axios.post(`https://speak-ease-server.vercel.app/payment`, payment)
