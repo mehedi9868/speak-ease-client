@@ -45,7 +45,7 @@ const PopularClasses = () => {
             return;
         }
         const selectedClass = { singleClass, studentEmail: user?.email, classId: singleClass._id }
-        axios.post(`https://speak-ease-server.vercel.app/selected-classes`, selectedClass)
+        axios.post(`https://speak-ease-server.vercel.app/selected-class`, selectedClass)
             .then(res => {
                 if (res.data.acknowledged) {
                     Swal.fire({
@@ -60,7 +60,7 @@ const PopularClasses = () => {
 
     return (
         <div className='md:p-10 my-10 flex flex-col'>
-            <p className='text-3xl font-bold mb-10 text-center'>All Classes</p>
+            <p className='text-3xl font-bold mb-10 text-center'>Popular Classes</p>
             <div className='grid sm:grid-cols-2 md:grid-cols-4 grid-cols-1 mx-auto gap-5'>
                 {classData.map((classes) =>
                     <div key={classes._id} className={`card w-80 group glass ${classes.seats === 0 && 'bg-red-600'}`}>
