@@ -49,7 +49,7 @@ const AllClasses = () => {
     return (
         <>
             <Helmet>
-                <title>MindFulness || All Classes</title>
+                <title>Speak Ease | All Classes</title>
             </Helmet>
             <div className='md:p-10 my-10 flex flex-col'>
                 <p className='text-3xl font-bold mb-10 text-center'>All Classes</p>

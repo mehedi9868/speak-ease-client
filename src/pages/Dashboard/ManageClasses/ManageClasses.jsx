@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { useQuery } from 'react-query';
 
 const ManageClasses = () => {
@@ -43,6 +44,9 @@ const ManageClasses = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Speak Ease | Manage Classes</title>
+            </Helmet>
             {
                 modal && <dialog className="modal modal-bottom sm:modal-middle" open>
                     <form onSubmit={handleSubmit} method="dialog" className="modal-box">

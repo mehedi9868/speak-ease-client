@@ -2,6 +2,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { useContext } from 'react';
+import { Helmet } from 'react-helmet';
 
 const AddClass = () => {
     const { user } = useContext(AuthContext)
@@ -34,40 +35,45 @@ const AddClass = () => {
             })
     }
     return (
-        <form onSubmit={handleSubmit} className='w-4/6 bg-base-300 shadow-2xl p-10 my-10'>
-            <p className='text-3xl font-bold text-center my-5'>Add Class</p>
-            <div className='flex justify-between w-full space-x-5'>
-                <div className="form-control w-full">
-                    <label htmlFor="" className='font-semibold mb-2'>Class name</label>
-                    <input type="text" name="className" placeholder='Class Name' className='input input-bordered focus:outline-none' />
+        <>
+            <Helmet>
+                <title>Speak Ease | Add Class</title>
+            </Helmet>
+            <form onSubmit={handleSubmit} className='w-4/6 bg-base-300 shadow-2xl p-10 my-10'>
+                <p className='text-3xl font-bold text-center my-5'>Add Class</p>
+                <div className='flex justify-between w-full space-x-5'>
+                    <div className="form-control w-full">
+                        <label htmlFor="" className='font-semibold mb-2'>Class name</label>
+                        <input type="text" name="className" placeholder='Class Name' className='input input-bordered focus:outline-none' />
+                    </div>
+                    <div className="form-control w-full">
+                        <label htmlFor="" className='font-semibold mb-2'>Class Image</label>
+                        <input type="file" name='classImage' className="file-input file-input-bordered w-full" />
+                    </div>
                 </div>
-                <div className="form-control w-full">
-                    <label htmlFor="" className='font-semibold mb-2'>Class Image</label>
-                    <input type="file" name='classImage' className="file-input file-input-bordered w-full" />
+                <div className='flex justify-between w-full space-x-5 mt-5'>
+                    <div className="form-control w-full">
+                        <label htmlFor="" className='font-semibold mb-2'>Instructor name</label>
+                        <input type="text" name="instructorName" value={user?.displayName} placeholder='Instructor Name' className='input input-bordered focus:outline-none' />
+                    </div>
+                    <div className="form-control w-full">
+                        <label htmlFor="" className='font-semibold mb-2'>Instructor Email</label>
+                        <input type="text" name="instructorEmail" value={user?.email} placeholder='Instructor email' className='input input-bordered focus:outline-none' />
+                    </div>
                 </div>
-            </div>
-            <div className='flex justify-between w-full space-x-5 mt-5'>
-                <div className="form-control w-full">
-                    <label htmlFor="" className='font-semibold mb-2'>Instructor name</label>
-                    <input type="text" name="instructorName" value={user?.displayName} placeholder='Instructor Name' className='input input-bordered focus:outline-none' />
+                <div className='flex justify-between w-full space-x-5 mt-5'>
+                    <div className="form-control w-full">
+                        <label htmlFor="" className='font-semibold mb-2'>Available Seats</label>
+                        <input type="text" name="availableSeats" placeholder='Available Seats' className='input input-bordered focus:outline-none' />
+                    </div>
+                    <div className="form-control w-full">
+                        <label htmlFor="" className='font-semibold mb-2'>Price</label>
+                        <input type="text" name="price" placeholder='price' className='input input-bordered focus:outline-none' />
+                    </div>
                 </div>
-                <div className="form-control w-full">
-                    <label htmlFor="" className='font-semibold mb-2'>Instructor Email</label>
-                    <input type="text" name="instructorEmail" value={user?.email} placeholder='Instructor email' className='input input-bordered focus:outline-none' />
-                </div>
-            </div>
-            <div className='flex justify-between w-full space-x-5 mt-5'>
-                <div className="form-control w-full">
-                    <label htmlFor="" className='font-semibold mb-2'>Available Seats</label>
-                    <input type="text" name="availableSeats" placeholder='Available Seats' className='input input-bordered focus:outline-none' />
-                </div>
-                <div className="form-control w-full">
-                    <label htmlFor="" className='font-semibold mb-2'>Price</label>
-                    <input type="text" name="price" placeholder='price' className='input input-bordered focus:outline-none' />
-                </div>
-            </div>
-            <button type='submit' className='btn btn-primary mt-5 w-full font-bold text-xl'>Add Class</button>
-        </form>
+                <button type='submit' className='btn btn-primary mt-5 w-full font-bold text-xl'>Add Class</button>
+            </form>
+        </>
     );
 };
 

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { useQuery } from 'react-query';
+import { Helmet } from 'react-helmet';
 
 const MySelectedClasses = () => {
     const { user, loading } = useContext(AuthContext);
@@ -31,37 +32,42 @@ const MySelectedClasses = () => {
             })
     }
     return (
-        <div className='w-11/12 py-10 px-5 bg-base-300 shadow-2xl my-10'>
-            <p className='text-3xl font-bold my-5 text-center'>My Selected Classes : {selectedClasses.length}</p>
-            <div className="overflow-x-auto">
-                <table className="table">
-                    {/* head */}
-                    <thead className='bg-slate-600 text-white'>
-                        <tr>
-                            <th>#</th>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Instructor Name</th>
-                            <th>Available Seats</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {selectedClasses.map((classes, index) =>
-                            <tr key={classes._id} className='hover'>
-                                <th>{index + 1}</th>
-                                <td><img className='w-20' src={classes?.singleClass?.image} alt="" /></td>
-                                <td>{classes?.singleClass?.className}</td>
-                                <td>{classes?.singleClass?.instructorName}</td>
-                                <td>{classes?.singleClass?.seats}</td>
-                                <td>${classes?.singleClass?.price}</td>
-                                <td className='flex justify-between'><button onClick={() => handleDelete(classes._id)} className='btn btn-error'>Delete</button><Link to={`/dashboard/payment/${classes._id}`}><button className='btn btn-success'>pay</button></Link></td>
-                            </tr>)}
-                    </tbody>
-                </table>
+        <>
+            <Helmet>
+                <title>Speak Ease | Selected Classes</title>
+            </Helmet>
+            <div className='w-11/12 py-10 px-5 bg-base-300 shadow-2xl my-10'>
+                <p className='text-3xl font-bold my-5 text-center'>My Selected Classes : {selectedClasses.length}</p>
+                <div className="overflow-x-auto">
+                    <table className="table">
+                        {/* head */}
+                        <thead className='bg-slate-600 text-white'>
+                            <tr>
+                                <th>#</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Instructor Name</th>
+                                <th>Available Seats</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {selectedClasses.map((classes, index) =>
+                                <tr key={classes._id} className='hover'>
+                                    <th>{index + 1}</th>
+                                    <td><img className='w-20' src={classes?.singleClass?.image} alt="" /></td>
+                                    <td>{classes?.singleClass?.className}</td>
+                                    <td>{classes?.singleClass?.instructorName}</td>
+                                    <td>{classes?.singleClass?.seats}</td>
+                                    <td>${classes?.singleClass?.price}</td>
+                                    <td className='flex justify-between'><button onClick={() => handleDelete(classes._id)} className='btn btn-error'>Delete</button><Link to={`/dashboard/payment/${classes._id}`}><button className='btn btn-success'>pay</button></Link></td>
+                                </tr>)}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

@@ -12,15 +12,17 @@ const Payment = () => {
     const price = selectedClass?.singleClass?.price;
     console.log(selectedClass.singleClass.price)
     return (
-        <div className='w-3/4 mx-auto mt-10 flex items-center flex-col'>
+        <>
             <Helmet>
                 <title>Speak Ease | Payment</title>
             </Helmet>
-            <p className='text-4xl font-bold text-center mb-10'>Please pay to enroll the class</p>
-            <Elements stripe={stripePromise}>
-                <CheckoutForm price={price} selectedClass={selectedClass} />
-            </Elements>
-        </div>
+            <div className='w-3/4 mx-auto mt-10 flex items-center flex-col'>
+                <p className='text-4xl font-bold text-center mb-10'>Please pay to enroll the class</p>
+                <Elements stripe={stripePromise}>
+                    <CheckoutForm price={price} selectedClass={selectedClass} />
+                </Elements>
+            </div>
+        </>
     );
 };
 

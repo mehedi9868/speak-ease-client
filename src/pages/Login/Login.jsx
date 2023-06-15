@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { FadeLoader } from "react-spinners";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false)
@@ -60,6 +61,9 @@ const Login = () => {
     }
     return (
         <>
+            <Helmet>
+                <title>Speak Ease | Login</title>
+            </Helmet>
             {/* loading state loader */}
             <div className='flex justify-center mt-5 mb-5'>
                 {

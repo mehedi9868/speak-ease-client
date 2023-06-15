@@ -6,6 +6,7 @@ import { useContext } from "react";
 import Swal from "sweetalert2";
 import { FadeLoader } from "react-spinners";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
     const { register, handleSubmit, reset, formState: { errors }, watch } = useForm();
@@ -66,6 +67,9 @@ const Register = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Speak Ease | Register</title>
+            </Helmet>
             {/* loading state loader */}
             <div className='flex justify-center mt-5 mb-5'>
                 {
