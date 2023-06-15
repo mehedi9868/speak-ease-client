@@ -2,21 +2,36 @@ import axios from 'axios';
 import { NavLink, Outlet } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
-import { FaHome, FaUniversity, FaUsers, FaUsersCog, FaWallet, } from 'react-icons/fa';
+import { FaHome, FaSignOutAlt, FaUniversity, FaUsers, FaUsersCog, FaWallet, } from 'react-icons/fa';
 import { GiTeacher } from 'react-icons/gi';
 import { IoMdSchool } from 'react-icons/io';
+
 import { Helmet } from 'react-helmet';
+import Swal from 'sweetalert2';
 
 const Dashboard = () => {
-    const { user } = useContext(AuthContext);
-    const [currentUser, setCurrentUser] = useState({})
+    const [currentUser, setCurrentUser] = useState({});
+
+    const { user, logout } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logout()
+            .then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Successful!!',
+                    text: 'Logout Successful',
+                })
+            })
+            .catch(error => console.log(error))
+    }
 
     useEffect(() => {
         axios.get(`https://speak-ease-server.vercel.app/current-user?email=${user?.email}`)
             .then(res => {
                 setCurrentUser(res.data)
             })
-    }, [user?.email])
+    }, [user])
     return (
         <>
             <Helmet>
@@ -41,6 +56,7 @@ const Dashboard = () => {
                                 <li><NavLink className='font-bold text-base flex items-center' to='/'><FaHome className='w-5 h-5 mr-3' />Home</NavLink></li>
                                 <li><NavLink className='font-bold text-base flex items-center' to='/instructors'><GiTeacher className='mr-3' />Instructors</NavLink></li>
                                 <li><NavLink className='font-bold text-base flex items-center' to='/classes'><IoMdSchool className='w-5 h-5 mr-2' />Classes</NavLink></li>
+                                <li><NavLink onClick={handleLogout} className='font-bold text-base flex items-center' to='/'><FaSignOutAlt className='w-5 h-5 mr-2' />Logout</NavLink></li>
                             </ul>
                         )
                     }
@@ -54,6 +70,7 @@ const Dashboard = () => {
                                 <li><NavLink className='font-bold text-base flex items-center' to='/'><FaHome className='w-5 h-5 mr-3' />Home</NavLink></li>
                                 <li><NavLink className='font-bold text-base flex items-center' to='/instructors'><GiTeacher className='mr-3' />Instructors</NavLink></li>
                                 <li><NavLink className='font-bold text-base flex items-center' to='/classes'><IoMdSchool className='w-5 h-5 mr-2' />Classes</NavLink></li>
+                                <li><NavLink onClick={handleLogout} className='font-bold text-base flex items-center' to='/'><FaSignOutAlt className='w-5 h-5 mr-2' />Logout</NavLink></li>
                             </ul>
                         )
                     }
@@ -68,6 +85,7 @@ const Dashboard = () => {
                                 <li><NavLink className='font-bold text-base flex items-center' to='/'><FaHome className='w-5 h-5 mr-3' />Home</NavLink></li>
                                 <li><NavLink className='font-bold text-base flex items-center' to='/instructors'><GiTeacher className='mr-3' />Instructors</NavLink></li>
                                 <li><NavLink className='font-bold text-base flex items-center' to='/classes'><IoMdSchool className='w-5 h-5 mr-2' />Classes</NavLink></li>
+                                <li><NavLink onClick={handleLogout} className='font-bold text-base flex items-center' to='/'><FaSignOutAlt className='w-5 h-5 mr-2' />Logout</NavLink></li>
                             </ul>
                         )
                     }
