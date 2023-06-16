@@ -60,7 +60,7 @@ const PopularClasses = () => {
                                 <p className='font-semibold'>Available Seats: <span className='font-normal'>{classes.seats}</span></p>
                                 <p className='font-semibold'>Enrolled Students: <span className='font-normal'>{classes?.enrolledStudents}</span></p>
                                 <p className='font-semibold'>Price: <span className='font-normal'>${classes.price}</span></p>
-                                <button disabled={classes.seats === 0 ? 'disabled' : currentUser.role === 'admin' || currentUser.role === 'instructor' ? 'disabled' : ''} onClick={() => handleSelect(classes)} className="btn btn-primary">Select</button>
+                                <button disabled={classes.seats === 0 ? 'disabled' : currentUser.role === 'admin' || currentUser.role === 'instructor' ? 'disabled' : ''} onClick={() => handleSelect(classes)} className="btn btn-ghost bg-[#262626] bg-opacity-70 rounded-md text-white">Select</button>
                             </div>
                         </div>
                     </Fade>

@@ -50,7 +50,6 @@ const Register = () => {
         googleLogin()
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
                 if (loggedUser) {
                     Swal.fire({
                         icon: 'success',

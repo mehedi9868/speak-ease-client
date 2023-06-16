@@ -18,12 +18,12 @@ const MyEnrolledClasses = () => {
             <Helmet>
                 <title>Speak Ease | Enrolled Classes</title>
             </Helmet>
-            <div className='w-11/12 py-10 px-5 bg-base-300 shadow-2xl my-10'>
-                <p className='text-3xl font-bold my-5 text-center'>My Enrolled Classes : {enrolledClasses.length}</p>
+            <div className='w-5/6 py-10 px-5 bg-gray-100 rounded-md my-10'>
+                <p className='text-3xl font-bold my-5 text-center mb-10'>My Enrolled Classes : {enrolledClasses.length}</p>
                 <div className="overflow-x-auto">
                     <table className="table">
                         {/* head */}
-                        <thead className='bg-slate-600 text-white'>
+                        <thead className='bg-[#262626] bg-opacity-80 text-white'>
                             <tr>
                                 <th>#</th>
                                 <th>Image</th>
@@ -36,7 +36,7 @@ const MyEnrolledClasses = () => {
                             {enrolledClasses.map((classes, index) =>
                                 <tr key={classes._id} className='hover'>
                                     <th>{index + 1}</th>
-                                    <td><img className='w-20' src={classes?.singleClass?.image} alt="" /></td>
+                                    <td><img className='w-20 rounded-md' src={classes?.singleClass?.image} alt="" /></td>
                                     <td>{classes?.singleClass?.className}</td>
                                     <td>{classes?.singleClass?.instructorName}</td>
                                     <td>{classes?.singleClass?.instructorEmail}</td>

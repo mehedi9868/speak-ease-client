@@ -106,8 +106,8 @@ const CheckoutForm = ({ price, selectedClass }) => {
                     },
                 }}
             />
-            <p className='my-3 text-red-800'>{cardError}</p>
-            <button type="submit" disabled={!stripe || !clientSecret} className='my-10 w-1/3 mx-auto btn btn-primary'>Pay</button>
+            <p className='my-3 text-red-600'>{cardError}</p>
+            <button type="submit" disabled={!stripe || !clientSecret} className='mx-auto btn btn-success rounded-md my-10 px-6 py-2'>Pay</button>
         </form>
     );
 };

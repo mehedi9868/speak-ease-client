@@ -50,24 +50,23 @@ const AuthProvider = ({ children }) => {
                 console.log(error);
             });
     }
+
     // observe auth state change
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false);
-            console.log('provider?:', currentUser);
-
         });
         return () => {
             unsubscribe();
         }
     }, [])
-    console.log('provider?user:', user);
+
     // current user from db:
     useEffect(() => {
         axios.get(`https://speak-ease-server.vercel.app/current-user?email=${user?.email}`)
             .then(res => {
-                setCurrentUser(res.data)
+                setCurrentUser(res?.data)
             })
     }, [user]);
 

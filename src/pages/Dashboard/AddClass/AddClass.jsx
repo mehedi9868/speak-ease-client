@@ -39,8 +39,8 @@ const AddClass = () => {
             <Helmet>
                 <title>Speak Ease | Add Class</title>
             </Helmet>
-            <form onSubmit={handleSubmit} className='w-4/6 bg-base-300 shadow-2xl p-10 my-10'>
-                <p className='text-3xl font-bold text-center my-5'>Add Class</p>
+            <form onSubmit={handleSubmit} className='w-5/6 bg-gray-100 p-10 my-10 rounded-md'>
+                <p className='text-3xl font-bold text-center my-5 mb-10'>Add Class</p>
                 <div className='flex justify-between w-full space-x-5'>
                     <div className="form-control w-full">
                         <label htmlFor="" className='font-semibold mb-2'>Class name</label>
@@ -71,7 +71,7 @@ const AddClass = () => {
                         <input type="text" name="price" placeholder='price' className='input input-bordered focus:outline-none' />
                     </div>
                 </div>
-                <button type='submit' className='btn btn-primary mt-5 w-full font-bold text-xl'>Add Class</button>
+                <button type='submit' className='btn btn-ghost bg-[#262626] bg-opacity-80 hover:bg-opacity-70 text-gray-200 mt-5 w-full font-bold'>Add Class</button>
             </form>
         </>
     );
