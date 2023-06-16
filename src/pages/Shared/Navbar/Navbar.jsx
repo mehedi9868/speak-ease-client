@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -20,13 +20,13 @@ const Navbar = () => {
     const menu =
         <>
             <li>
-                <Link to="/" className="text-white font-semibold text-base">Home</Link>
+                <NavLink to="/" className="text-white font-semibold text-base rounded-md">Home</NavLink>
             </li>
             <li>
-                <Link to="/instructors" className="text-white font-semibold text-base">Instructors</Link>
+                <NavLink to="/instructors" className="text-white font-semibold text-base rounded-md">Instructors</NavLink>
             </li>
             <li>
-                <Link to="/classes" className="text-white font-semibold text-base">Classes</Link>
+                <NavLink to="/classes" className="text-white font-semibold text-base rounded-md">Classes</NavLink>
             </li>
         </>
     return (

@@ -81,7 +81,7 @@ const Register = () => {
                 }
             </div>
             {/* loading state loader */}
-            <h2 className="text-2xl text-center font-bold my-10">Please Register</h2>
+            <h2 className="text-2xl text-center font-bold mb-10 mt-20">Please Register</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control w-1/3 mx-auto">
                     {/* name field  */}

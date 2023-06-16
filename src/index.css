@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.drawer-side a.active {
+    color: #c4c4c4;
+    background-color: #262626;
+}
+
+.drawer-side a {
+    background-color: transparent;
+}
+
+.dropdown a.active {
+    color: #262626;
+    background-color: #c4c4c4;
+}
+
+.menu a.active {
+    color: #262626;
+    background-color: #c4c4c4;
+}
