@@ -57,8 +57,8 @@ const AllClasses = () => {
                 <div className='grid grid-cols-1 md:grid-cols-3 mx-auto gap-5'>
                     {allClasses.map((classes) =>
                         <Fade key={classes._id}>
-                            <div className={`card w-full group glass ${classes.seats === 0 && 'bg-red-600'}`}>
-                                <figure><img className='w-full h-80 group-hover:scale-110' src={classes.image} alt="car!" /></figure>
+                            <div className={`card w-full group border rounded-md ${classes.seats === 0 && 'bg-red-600'}`}>
+                                <figure><img className='w-full h-80' src={classes.image} alt="car!" /></figure>
                                 <div className="card-body">
                                     <p className='font-semibold'>Class name: <span className='font-normal'>{classes.className}</span></p>
                                     <p className='font-semibold'>Instructor Name: <span className='font-normal'>{classes.instructorName}</span></p>

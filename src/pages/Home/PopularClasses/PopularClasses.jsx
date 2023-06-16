@@ -48,12 +48,12 @@ const PopularClasses = () => {
 
     return (
         <div className='flex flex-col'>
-            <p className='text-3xl font-bold my-20 text-center'>Popular Classes</p>
-            <div className='grid grid-cols-1 md:grid-cols-3 mx-auto gap-5'>
+            <p className='text-3xl font-bold my-10 md:my-20 text-center'>Popular Classes</p>
+            <div className='grid grid-cols-1 md:grid-cols-3 mx-auto gap-5 p-5 md:p-0'>
                 {classData.slice(0, 6).map((classes) =>
                     <Fade key={classes._id}>
-                        <div className={`card w-full h-full rounded-md group glass ${classes.seats === 0 && 'bg-red-600'}`}>
-                            <figure><img className='w-full h-80 group-hover:scale-110' src={classes.image} alt="car!" /></figure>
+                        <div className={`card w-full h-full rounded-md group border ${classes.seats === 0 && 'bg-red-600'}`}>
+                            <figure><img className='w-full h-80' src={classes.image} alt="car!" /></figure>
                             <div className="card-body">
                                 <p className='font-semibold'>Class name: <span className='font-normal'>{classes.className}</span></p>
                                 <p className='font-semibold'>Instructor Name: <span className='font-normal'>{classes.instructorName}</span></p>

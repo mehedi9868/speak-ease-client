@@ -15,17 +15,20 @@ const Footer = () => {
                     <div className="mb-3">
                         <p className="text-gray-400">Address:</p>
                         <p className="text-gray-400">
-                            Haemayetpur Pabna, Bangladesh,
+                            Street:  697 Nash Street
+                            City: Glenwood <br />
+                            State/province/area: Indiana <br />
+                            Country: United States
                         </p>
                         <p className="text-gray-400">
-                            Postal Code: 6602
+                            Zip code: 6602
                         </p>
                     </div>
 
                     <div className="text-gray-400 mb-3">
                         <p className="mt-2">Contact Information:</p>
-                        <p className="text-gray-400">Phone: +880-1797-XXXXXX</p>
-                        <p className="text-gray-400">Email: info@gmail.com</p>
+                        <p className="text-gray-400">Phone: +1-903-360-6038</p>
+                        <p className="text-gray-400">Email: info@speak-ease.com</p>
                     </div>
                     <div >
                         <p className="text-gray-400 mb-1">Follow Us:</p>
